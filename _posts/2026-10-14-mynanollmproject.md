@@ -63,13 +63,13 @@ What incredible components does the <strong><span style="color: #a821b5;">nanobe
 - **RAM**: 16GB RAM 💀
 
 According to <strong><span style="color: #c26603;">Claude</span></strong>, this is what I can do with this fantastic rig:
-> <span style="color: #c26603;">**Claude**</span>: Given your hardware (16GB RAM, RTX 3060Ti 8GB VRAM), the ceiling for local training from scratch is small models (tens of millions of params, maybe up to ~150M with heavy tricks). For fine-tuning, quantized LoRA/QLoRA gets you to 1B–3B models comfortably, maybe 7B at 4-bit if you’re patient. For inference, quantized 7B–8B models run fine via llama.cpp; vLLM will be tighter on VRAM but workable for small models.
+> Given your hardware (16GB RAM, RTX 3060Ti 8GB VRAM), the ceiling for local training from scratch is small models (tens of millions of params, maybe up to ~150M with heavy tricks). For fine-tuning, quantized LoRA/QLoRA gets you to 1B–3B models comfortably, maybe 7B at 4-bit if you’re patient. For inference, quantized 7B–8B models run fine via llama.cpp; vLLM will be tighter on VRAM but workable for small models.
 
 **Obviously**, these are rough estimates, not guarantees. Actual limits will depend on the architecture, sequence length, batch size, and memory optimizations.
 
 Brace yourselves, because I'm ready to destroy everything (`insert evil laugh here`)(hopefully not the <strong><span style="color: #a821b5;">nanobeast</span></strong>)!
 
-I've also asked Claude to give me a roadmap that I'll try to follow closely, to keep my brain from going off on tangents and getting lost. I'll dedicate a blog post to each phase of each project in the roadmap, whenever possible.
+I've also asked <strong><span style="color: #c26603;">Claude</span></strong> to give me a roadmap that I'll try to follow closely, to keep my brain from going off on tangents and getting lost. I'll dedicate a blog post to each phase of each project in the roadmap, whenever possible.
 
 In the following sections, I'll briefly introduce each project. Each project will be divided into multiple phases, which we'll explore in the actual posts. No need to fill this post with too many details!
 
