@@ -12,11 +12,17 @@ tags: nanollm llm
 
 ## 0. A very short introduction
 
-So, here we are. I have never written a blog post before, but this project I'm working on definitely deserves to be narrated. There will be errors, issues, <span style="color: #c50808;">**catastrophes**</span> (ok, maybe that's a bit too much), but I think this will be a very rewarding and instructive journey.
+So, here we are. I have never written a blog post before, but this project I'm working on definitely deserves to be narrated. There will be errors, issues, <strong><span style="color: #c50808;">catastrophes</span></strong> (ok, maybe that's a bit too much), but I think this will be a very rewarding and instructive journey.
 
 As I'm writing this first post, my website (well, a simple GitHub Pages website built with [Jekyll](https://jekyllrb.com/) and [al-folio](https://github.com/alshedivat/al-folio)) is still a mess, with the tutorials provided by al-folio, pictures of Albert Einstein scattered around, and so on. Maybe by the time you read this post, the website will be all nice and tidy. But I had to tell you: it used to be a (or rather, **MY**) mess! Here is a picture of what the website used to look like:
 
-<img src="/assets/img/2026-10-14-mynanollmproject/myoldwebsite.png" alt="My old website" style="width: 100%; max-width: 600px; height: auto;">
+<div style="text-align: center;">
+  <img
+    src="/assets/img/2026-10-14-mynanollmproject/myoldwebsite.png"
+    alt="My old website"
+    style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto;"
+  >
+</div>
 
 If you've made it here, you probably already know that this project will revolve around the LLM space. Still, I'd like to dedicate a couple of lines to the rules I'll follow in my blog posts, just to give you an idea of what to expect:
 - This won't be a serious blog: I like memes, I like jokes, and you'll find plenty of both in my posts.
@@ -35,9 +41,9 @@ Now we can start talking about the project.
 
 I'm an AI researcher, but I've mainly worked on self-supervised learning (SSL) for vision tasks, applying it to remote sensing data and studying and training Geospatial Foundation Models. When it comes to LLMs, I've mostly used them as "final products." I've read plenty of papers over the years, so I'm quite comfortable with most of the theory, but I've never actually written the code that makes the magic happen. It's time to change that!
 
-So, let's say I know the theory behind transformers quite well, and I understand the basics of LLM training. Now, I want to build my own small LLM from scratch (let's call it <span style="color: #3164f0;">**nanollm**</span>, for reasons you're about to discover) and work my way through every stage of the process.
+So, let's say I know the theory behind transformers quite well, and I understand the basics of LLM training. Now, I want to build my own small LLM from scratch (let's call it <strong><span style="color: #3164f0;">nanollm</span></strong>, for reasons you're about to discover) and work my way through every stage of the process.
 
-To be <span style="color: #4ba5cc;">**crystal clear**</span>, I'd like to cover both:
+To be <strong><span style="color: #4ba5cc;">crystal clear</span></strong>, I'd like to cover both:
 - model definition and training, including pretraining and post-training (SFT, DPO, RLHF);
 - systems and applications: inference and serving, RAG, and agents.
 
@@ -47,21 +53,21 @@ The LLM field is huge nowadays: there are countless stages, theoretical concepts
 
 I'll upload everything I do, every single bit of code, to the project repository, [nanollm](https://github.com/notprime/nanollm). I'll also try to be as clear as possible with the code, comments, and hyperlinks throughout the posts. I don't want you to feel lost in a jungle (even if jungles are pretty cool).
 
-Oh yes, now's the perfect time to tell you why I chose to call the project <span style="color: #3164f0;">**nanollm**</span>: I'm compute- and hardware-constrained, and I thought it would be interesting to train a small LLM on my own hardware. Obviously, this means we'll have to make some budget-conscious decisions, but it'll also push us to explore scaling laws, LoRA/QLoRA, and so on.
+Oh yes, now's the perfect time to tell you why I chose to call the project <strong><span style="color: #3164f0;">nanollm</span></strong>: I'm compute- and hardware-constrained, and I thought it would be interesting to train a small LLM on my own hardware. Obviously, this means we'll have to make some budget-conscious decisions, but it'll also push us to explore scaling laws, LoRA/QLoRA, and so on.
 
-I also think it's only fair to give my little PC a heroic name, and we'll use that name every time I mention it. For consistency, we'll call it the <span style="color: #a821b5;">**nanobeast**</span>!
+I also think it's only fair to give my little PC a heroic name, and we'll use that name every time I mention it. For consistency, we'll call it the <strong><span style="color: #a821b5;">nanobeast</span></strong>!
 
-What incredible components does the <span style="color: #a821b5;">**nanobeast**</span> pack?
+What incredible components does the <strong><span style="color: #a821b5;">nanobeast</span></strong>! pack?
 - **CPU**: AMD Ryzen 7 7800X 🔥
 - **GPU**: RTX 3060Ti 8GB VRAM (pls don't die, I love you ❤️)
 - **RAM**: 16GB RAM 💀
 
-According to <span style="color: #c26603;">**Claude**</span>, this is what I can do with this fantastic rig:
+According to <strong><span style="color: #c26603;">Claude</span></strong>, this is what I can do with this fantastic rig:
 > <span style="color: #c26603;">**Claude**</span>: Given your hardware (16GB RAM, RTX 3060Ti 8GB VRAM), the ceiling for local training from scratch is small models (tens of millions of params, maybe up to ~150M with heavy tricks). For fine-tuning, quantized LoRA/QLoRA gets you to 1B–3B models comfortably, maybe 7B at 4-bit if you’re patient. For inference, quantized 7B–8B models run fine via llama.cpp; vLLM will be tighter on VRAM but workable for small models.
 
 **Obviously**, these are rough estimates, not guarantees. Actual limits will depend on the architecture, sequence length, batch size, and memory optimizations.
 
-Brace yourselves, because I'm ready to destroy everything (`insert evil laugh here`)(hopefully not the <span style="color: #a821b5;">**nanobeast**</span>)!
+Brace yourselves, because I'm ready to destroy everything (`insert evil laugh here`)(hopefully not the <strong><span style="color: #a821b5;">nanobeast</span></strong>)!
 
 I've also asked Claude to give me a roadmap that I'll try to follow closely, to keep my brain from going off on tangents and getting lost. I'll dedicate a blog post to each phase of each project in the roadmap, whenever possible.
 
@@ -79,7 +85,7 @@ Here, we'll establish the general pipeline, covering a debugging dataset and tok
 
 🎯**Goal**: experience the actual pretraining loop and develop some intuition about scaling laws.
 
-We'll start by implementing a reproducible pretraining pipeline, then train a baseline model on the <span style="color: #a821b5;">**nanobeast**</span>! We'll train three model sizes, compare them, and run some scaling-law experiments. Everything should work if we haven't made any mistakes, but who knows 😛.
+We'll start by implementing a reproducible pretraining pipeline, then train a baseline model on the <strong><span style="color: #a821b5;">nanobeast</span></strong>! We'll train three model sizes, compare them, and run some scaling-law experiments. Everything should work if we haven't made any mistakes, but who knows 😛.
 
 ### 2.3 Project 3: Post-training
 
@@ -111,4 +117,9 @@ See you soon, friends!
 **Yours, <br>
 Riccardo "notprime" Musto**
 
-<img src="/assets/img/2026-10-14-mynanollmproject/handshake.jpg" style="width: 100%; max-width: 600px; height: auto;">
+<div style="text-align: center;">
+  <img
+    src="/assets/img/2026-10-14-mynanollmproject/handshake.jpg"
+    style="display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto;"
+  >
+</div>
