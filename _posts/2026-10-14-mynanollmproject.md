@@ -1,7 +1,7 @@
 ---
 layout: post
 title: My nanollm project
-date: 2026-10-16 12:35:00
+date: 2026-10-14 00:00:00
 description: my nanoGPT-like project, and it's going to be lots of fun!
 tags: nanollm llm
 #categories: sample-posts
