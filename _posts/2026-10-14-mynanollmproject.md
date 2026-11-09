@@ -71,7 +71,7 @@ Brace yourselves, because I'm ready to destroy everything (`insert evil laugh he
 
 I've also asked <strong><span style="color: #c26603;">Claude</span></strong> to give me a roadmap that I'll try to follow closely, to keep my brain from going off on tangents and getting lost. I'll dedicate a blog post to each phase of each project in the roadmap, whenever possible.
 
-In the following sections, I'll briefly introduce each project. Each project will be divided into multiple phases, which we'll explore in the actual posts. No need to fill this post with too many details!
+In the following sections, I'll briefly introduce each project. Each project will be divided into multiple phases, which we'll explore in the actual posts. No need to fill this post with too many details (moreover, the roadmap is still a **wip**)!
 
 ## 2. Projects
 
@@ -80,6 +80,13 @@ In the following sections, I'll briefly introduce each project. Each project wil
 
 Here, we'll establish the general pipeline, covering a debugging dataset and tokenizer, a baseline transformer, and a test training run to check that everything works. Finally, we'll explore some architectural extensions.
 
+We will cover:
+
+- **Phase 0 - Dataset and tokenizer**
+- **Phase 1 - The baseline Transformer**
+- **Phase 2 - Training and debugging**
+- **Phase 3 - Architecture extensions**
+
 
 ### 2.2 Project 2: Pretraining and scaling
 
@@ -87,11 +94,26 @@ Here, we'll establish the general pipeline, covering a debugging dataset and tok
 
 We'll start by implementing a reproducible pretraining pipeline, then train a baseline model on the <strong><span style="color: #a821b5;">nanobeast</span></strong>! We'll train three model sizes, compare them, and run some scaling-law experiments. Everything should work if we haven't made any mistakes, but who knows 😛.
 
+We will cover:
+
+- **Phase 0 - Prepare a larger licensed text corpus**
+- **Phase 1 - Train one baseline model**
+- **Phase 2 - Compare model sizes**
+- **Phase 3 - Scaling-law plots**
+
+
 ### 2.3 Project 3: Post-training
 
 🎯**Goal**: go from supervised fine-tuning to preference optimization, and then RL.
 
 You already know the deal. We'll first prepare the datasets, then start experimenting with SFT (Supervised Fine-Tuning), comparing full fine-tuning with LoRA. Next, we'll move to DPO (Direct Preference Optimization), and finally, RLHF with PPO.
+
+We will cover:
+
+- **Phase 0 - Instruction-response dataset + small eval set**
+- **Phase 1 - SFT**
+- **Phase 2 - DPO**
+- **Phase 3 - RLHF/PPO**
 
 ### 2.4 Project 4: Efficient inference and serving
 
