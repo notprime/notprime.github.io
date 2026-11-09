@@ -69,13 +69,13 @@ According to <strong><span style="color: #c26603;">Claude</span></strong>, this 
 
 Brace yourselves, because I'm ready to destroy everything (`insert evil laugh here`)(hopefully not the <strong><span style="color: #a821b5;">nanobeast</span></strong>)!
 
-I've also asked <strong><span style="color: #c26603;">Claude</span></strong> to give me a roadmap that I'll try to follow closely, to keep my brain from going off on tangents and getting lost. I'll dedicate a blog post to each phase of each project in the roadmap, whenever possible.
+I've also asked <strong><span style="color: #c26603;">Claude</span></strong> to give me a roadmap that I'll try to follow closely, to keep my brain from going off on tangents and getting lost. I'll dedicate a blog post to each phase of each stage in the roadmap, whenever possible.
 
-In the following sections, I'll briefly introduce each project. Each project will be divided into multiple phases, which we'll explore in the actual posts. No need to fill this post with too many details (moreover, the roadmap is still a **wip**)!
+In the following sections, I'll briefly introduce each stage. Each one will be divided into multiple phases, which we'll explore in the actual posts. No need to fill this post with too many details (moreover, the roadmap is still a **wip**)!
 
-## 2. Projects
+## 2. Stages
 
-### 2.1 Project 1: Build a GPT from scratch  
+### 2.1 Stage 1: Build a GPT from scratch  
 🎯**Goal**: go from Karpathy's videos to a working, modern-ish decoder we can understand line by line.
 
 Here, we'll establish the general pipeline, covering a debugging dataset and tokenizer, a baseline transformer, and a test training run to check that everything works. Finally, we'll explore some architectural extensions.
@@ -88,7 +88,7 @@ We will cover:
 - **Phase 3 - Architecture extensions**
 
 
-### 2.2 Project 2: Pretraining and scaling
+### 2.2 Stage 2: Pretraining and scaling
 
 🎯**Goal**: experience the actual pretraining loop and develop some intuition about scaling laws.
 
@@ -102,7 +102,7 @@ We will cover:
 - **Phase 3 - Scaling-law plots**
 
 
-### 2.3 Project 3: Post-training
+### 2.3 Stage 3: Post-training
 
 🎯**Goal**: go from supervised fine-tuning to preference optimization, and then RL.
 
@@ -115,13 +115,13 @@ We will cover:
 - **Phase 2 - DPO**
 - **Phase 3 - RLHF/PPO**
 
-### 2.4 Project 4: Efficient inference and serving
+### 2.4 Stage 4: Efficient inference and serving
 
 🎯**Goal**: understand how tf we can serve those LLMs to lots of people!
 
-This project might take a while (Project 3 might take a while too). We'll dive into inference fundamentals, implement a KV-cache, deal with quantization and llama.cpp, and finally play around with vLLM and serving internals.
+This stage might take a while (Stage 3 might take a while too). We'll dive into inference fundamentals, implement a KV-cache, deal with quantization and llama.cpp, and finally play around with vLLM and serving internals.
 
-### 2.5 Project 5-7: RAG, agents, a capstone project
+### 2.5 Stage 5-7: RAG, agents, a capstone project
 
 🎯**Goal**: understand how tf we can build amazing things with those LLMs!
 
